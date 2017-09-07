@@ -8,28 +8,6 @@ var config = require('./config');
 var data = require('./listings.json');
 mongoose.connect(config.db.uri, { useMongoClient: true });
 
-var listingSchema = new Schema({
-   code : {
-      type: String,
-      required: true
-    },
-   name : {
-     type: String,
-     required: true
-   },
-   address : {
-      type: String,
-      required: false
-    },
-   coordinates : {
-     latitude : Number,
-     longitude : Number,
-   }
-});
-
-var Listing = mongoose.model('Listing', listingSchema);
-
-
 var findLibraryWest = function() {
   Listing.find({name: "Library West"}, function(err, result) {
       console.log("Found Library West: " + result);
